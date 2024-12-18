@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "463819102155",
+    "firebase_url": "https://carwashapp-4b688-default-rtdb.firebaseio.com",
+    "project_id": "carwashapp-4b688",
+    "storage_bucket": "carwashapp-4b688.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463819102155:android:f755d3deb64a3b00ba884e",
+        "android_client_info": {
+          "package_name": "com.mycompany.carwash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr5amHLQH4BZJHHRlt3HymKAWwdZ1-Wv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
