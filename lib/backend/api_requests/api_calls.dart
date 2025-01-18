@@ -17,7 +17,7 @@ class CarServiceGroup {
   static String getBaseUrl({
     String? token = '',
   }) =>
-      'https://carservice.templatevilla.net/api';
+      'https://unext-093c7f7b34c2.herokuapp.com/api'; // you can replace base url here WICHTIG
   static Map<String, String> headers = {
     'Authorization': 'Bearer [token]',
   };
