@@ -17,11 +17,7 @@ class CarServiceGroup {
   static String getBaseUrl({
     String? token = '',
   }) =>
-<<<<<<< Updated upstream
-      'https://carservice.templatevilla.net/api';
-=======
-      'https://unext-093c7f7b34c2.herokuapp.com/api'; // WICHTIG!
->>>>>>> Stashed changes
+      'https://unext-093c7f7b34c2.herokuapp.com/api'; // Link zu Admin Portal
   static Map<String, String> headers = {
     'Authorization': 'Bearer [token]',
   };

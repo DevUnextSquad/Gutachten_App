@@ -1,79 +1,83 @@
-import 'package:flutter/material.dart';
-import 'flutter_flow/request_manager.dart';
-import '/backend/schema/structs/index.dart';
-import '/backend/api_requests/api_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
-import 'dart:convert';
+import 'package:flutter/material.dart'; // Importiert das Flutter-Material-Design-Paket
+import 'flutter_flow/request_manager.dart'; // Importiert den Request-Manager
+import '/backend/schema/structs/index.dart'; // Importiert die Schema-Strukturen
+import '/backend/api_requests/api_manager.dart'; // Importiert den API-Manager
+import 'package:shared_preferences/shared_preferences.dart'; // Ermöglicht das Speichern und Abrufen von Daten
+import 'flutter_flow/flutter_flow_util.dart'; // Nützliche Hilfsfunktionen für Flutter Flow
+import 'dart:convert'; // Ermöglicht das Codieren und Dekodieren von JSON-Daten
 
+
+// Definiert die App-Zustandsklasse, die ChangeNotifier erweitert
 class FFAppState extends ChangeNotifier {
-  static FFAppState _instance = FFAppState._internal();
+  static FFAppState _instance = FFAppState._internal(); // Erstellt eine statische Instanz der Klasse
 
-  factory FFAppState() {
+  factory FFAppState() { // Factory-Konstruktor, gibt immer die gleiche Instanz zurück
     return _instance;
   }
 
-  FFAppState._internal();
+  FFAppState._internal(); // Privater Konstruktor für Singleton-Implementierung
 
-  static void reset() {
+  static void reset() { // Setzt den Zustand zurück
     _instance = FFAppState._internal();
   }
 
+  // Initialisiert den gespeicherten Zustand aus SharedPreferences
   Future initializePersistedState() async {
-    prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance(); // Lädt die gespeicherten Daten
     _safeInit(() {
-      _isLogin = prefs.getBool('ff_isLogin') ?? _isLogin;
+      _isLogin = prefs.getBool('ff_isLogin') ?? _isLogin; // Lädt den Login-Status
     });
     _safeInit(() {
-      _isIntro = prefs.getBool('ff_isIntro') ?? _isIntro;
+      _isIntro = prefs.getBool('ff_isIntro') ?? _isIntro; // Lädt den Einführungsstatus
     });
     _safeInit(() {
-      _userId = prefs.getString('ff_userId') ?? _userId;
+      _userId = prefs.getString('ff_userId') ?? _userId; // Lädt die Benutzer-ID
     });
     _safeInit(() {
       if (prefs.containsKey('ff_userDetails')) {
         try {
-          _userDetails = jsonDecode(prefs.getString('ff_userDetails') ?? '');
+          _userDetails = jsonDecode(prefs.getString('ff_userDetails') ?? ''); // Lädt Benutzerdetails
         } catch (e) {
-          print("Can't decode persisted json. Error: $e.");
+          print("Can't decode persisted json. Error: $e."); // Fehlerbehandlung bei fehlerhaftem JSON
         }
       }
     });
     _safeInit(() {
-      _token = prefs.getString('ff_token') ?? _token;
+      _token = prefs.getString('ff_token') ?? _token; // Lädt das Token
     });
     _safeInit(() {
       _currentPassword =
-          prefs.getString('ff_currentPassword') ?? _currentPassword;
+          prefs.getString('ff_currentPassword') ?? _currentPassword; // Lädt das aktuelle Passwort
     });
     _safeInit(() {
-      _deviceId = prefs.getString('ff_deviceId') ?? _deviceId;
+      _deviceId = prefs.getString('ff_deviceId') ?? _deviceId; // Lädt die Geräte-ID
     });
     _safeInit(() {
-      _vehicleId = prefs.getString('ff_vehicleId') ?? _vehicleId;
+      _vehicleId = prefs.getString('ff_vehicleId') ?? _vehicleId; // Lädt die Fahrzeug-ID
     });
     _safeInit(() {
-      _vehiclenumber = prefs.getString('ff_vehiclenumber') ?? _vehiclenumber;
+      _vehiclenumber = prefs.getString('ff_vehiclenumber') ?? _vehiclenumber; // Lädt die Fahrzeugnummer
     });
     _safeInit(() {
-      _isVerified = prefs.getBool('ff_isVerified') ?? _isVerified;
+      _isVerified = prefs.getBool('ff_isVerified') ?? _isVerified; // Prüft die Verifizierung
     });
     _safeInit(() {
-      _tokenFcm = prefs.getString('ff_tokenFcm') ?? _tokenFcm;
+      _tokenFcm = prefs.getString('ff_tokenFcm') ?? _tokenFcm; // Lädt das FCM-Token
     });
     _safeInit(() {
       _isLoginVehicleCheck =
-          prefs.getBool('ff_isLoginVehicleCheck') ?? _isLoginVehicleCheck;
+          prefs.getBool('ff_isLoginVehicleCheck') ?? _isLoginVehicleCheck; // Lädt den Fahrzeug-Login-Status
     });
   }
 
-  void update(VoidCallback callback) {
-    callback();
+  void update(VoidCallback callback) { // Aktualisiert den Zustand und benachrichtigt Listener
+    callback(); 
     notifyListeners();
   }
 
-  late SharedPreferences prefs;
+  late SharedPreferences prefs; // SharedPreferences-Objekt zum Speichern von Daten
 
+  // Definition von verschiedenen Zustandsvariablen mit Getter und Setter
   bool _isLogin = false;
   bool get isLogin => _isLogin;
   set isLogin(bool value) {
